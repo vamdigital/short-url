@@ -13,3 +13,5 @@ Users should be able to:
 - Receive an error message when the `form` is submitted if:
   - The `input` field is empty
   - The `input` field should have valid URL
+
+### Screenshot
