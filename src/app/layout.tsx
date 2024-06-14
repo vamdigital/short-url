@@ -7,7 +7,7 @@ const poppins = Poppins({ subsets: ['latin'], weight: ['500', '700'] });
 
 export const metadata: Metadata = {
   title: 'Shorten-url',
-  description: 'A utility to shorten your urls',
+  description: 'A utility to shorten your urls.',
 };
 
 export default function RootLayout({

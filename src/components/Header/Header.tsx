@@ -3,8 +3,8 @@ import { HeaderNav, Logo } from '@/components';
 export const Header = () => {
   return (
     <header className="flex w-full bg-white py-10">
-      <div className="max-mobile:flex-col container relative flex w-full lg:items-center">
-        <div className="max-mobile:flex-col flex min-w-[120px] lg:mr-10">
+      <div className="container relative flex w-full lg:items-center max-mobile:flex-col">
+        <div className="flex min-w-[120px] lg:mr-10 max-mobile:flex-col">
           <Logo />
         </div>
         <HeaderNav />
