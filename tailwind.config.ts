@@ -18,7 +18,18 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        'max-mobile': { max: '1023px' },
+      },
       colors: {
+        cyan: 'hsl(180, 66%, 49%)',
+        red: 'hsl(0, 87%, 67%)',
+        'd-violet': 'hsl(257, 27%, 26%)',
+        'bg-gray': 'hsl(230, 25%, 95%)',
+        'l-gray': 'hsl(0, 0%, 75%)',
+        'g-violet': 'hsl(257, 7%, 63%)',
+        'v-d-blue': 'hsl(255, 11%, 22%)',
+        'v-d-violet': 'hsl(260, 8%, 14%)',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
