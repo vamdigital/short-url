@@ -12,15 +12,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  auth,
 }: Readonly<{
   children: React.ReactNode;
+  auth: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <body className={poppins.className}>
         <div className="flex min-h-screen flex-col">
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1">
+            {children}
+            {auth}
+          </main>
           <footer className="bg-v-d-blue flex w-full justify-center p-5 text-center text-white">
             <h3>Footer Content</h3>
           </footer>
