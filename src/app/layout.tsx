@@ -26,7 +26,7 @@ export default function RootLayout({
             {children}
             {auth}
           </main>
-          <footer className="bg-v-d-blue flex w-full justify-center p-5 text-center text-white">
+          <footer className="flex w-full justify-center bg-v-d-blue p-5 text-center text-white">
             <h3>Footer Content</h3>
           </footer>
         </div>
