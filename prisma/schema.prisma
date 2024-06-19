@@ -19,14 +19,16 @@ model ShortUrls {
   updatedAt               DateTime @updatedAt
   originalUrl             String
   shortenedUrl            String
-  user                    User @relation(fields: [userId], references: [id])
-  userId                  Int
+  user                    User @relation(fields: [userId], references: [id]) 
+  userId                  String
 }
 
 model User {
-  id                      Int @id @default(autoincrement())
+  id                      String @id @default(cuid())
   email                   String @unique
   password                String
+  name                    String
+  avatarUrl               String?
   urls                    ShortUrls[]
 }
 

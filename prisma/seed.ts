@@ -7,6 +7,8 @@ async function seed() {
     create: {
       email: 'alice@alice.com',
       password: 'alicealice',
+      name: 'alice',
+      avatarUrl: '/avatar-alice.png',
       urls: {
         create: {
           originalUrl: 'https://www.alice.io',
@@ -21,6 +23,8 @@ async function seed() {
     create: {
       email: 'bob@bob.com',
       password: 'bobbob',
+      name: 'bob',
+      avatarUrl: '/avatar-bob.png',
       urls: {
         create: {
           originalUrl: 'https://www.bob.io',
@@ -38,7 +42,15 @@ async function seed() {
     },
   });
 
-  return { alice, bob, aliceUrl };
+  const bobUrl = await db.shortUrls.create({
+    data: {
+      originalUrl: 'https://www.new-bob.io',
+      shortenedUrl: 'https://bit.bob.new',
+      userId: bob.id,
+    },
+  });
+
+  return { alice, bob, aliceUrl, bobUrl };
 }
 
 seed()
