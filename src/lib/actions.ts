@@ -1,42 +1,11 @@
-/* eslint-disable require-await */
 'use server';
 import { z } from 'zod';
 import { loginFormSchema, signupFormSchema } from './formSchema';
 import db from '../../prisma/prisma';
 import { revalidatePath } from 'next/cache';
-import { signIn } from '../../auth';
+import { signOut, signIn } from '../../auth';
+import { isRedirectError } from 'next/dist/client/components/redirect';
 import { hash } from 'bcryptjs';
-
-export const onDataActionSignup = async (
-  data: z.infer<typeof signupFormSchema>,
-) => {
-  const parsed = signupFormSchema.safeParse(data);
-
-  if (!parsed.success) {
-    return {
-      message: 'Invalid data',
-      error: parsed.error,
-      issues: parsed.error.issues.map((issue) => issue.message),
-    };
-  } else {
-    const email = parsed.data.email;
-    const password = parsed.data.password;
-    const hashedPassword = await hash(password, 10);
-    await db.user.create({
-      data: {
-        email,
-        password: password,
-        name: parsed.data.name,
-        avatarUrl: parsed.data.avatarUrl,
-      },
-    });
-    revalidatePath('/signup');
-    return {
-      message: 'User Registered',
-      data: parsed.data,
-    };
-  }
-};
 
 export const onFormActionSignup = async (
   prevState: {
@@ -84,27 +53,8 @@ export const onFormActionSignup = async (
   }
 };
 
-export const onDataActionLogin = async (
-  data: z.infer<typeof loginFormSchema>,
-) => {
-  const parsed = loginFormSchema.safeParse(data);
-  if (!parsed.success) {
-    return {
-      message: 'Login Failed. Invalid data',
-      error: parsed.error,
-      issues: parsed.error.issues.map((issue) => issue.message),
-    };
-  } else {
-    revalidatePath('/login');
-    return {
-      message: 'Successfully Logged in',
-      data: parsed.data,
-    };
-  }
-};
-
 export const onFormActionLogin = async (
-  prevState: {
+  _prevState: {
     message: string;
     user?: z.infer<typeof loginFormSchema>;
     issues?: string[];
@@ -118,15 +68,15 @@ export const onFormActionLogin = async (
       await signIn('credentials', {
         email: parsed.data.email,
         password: parsed.data.password,
-        redirect: false,
       });
-      // Response.redirect(new URL('/dashboard', 'http://localhost:3000'));
-      revalidatePath('/login');
       return {
         message: 'Successfully Logged in',
         user: parsed.data,
       };
     } catch (error) {
+      if (isRedirectError(error)) {
+        throw error;
+      }
       return {
         message: `Login Failed please check your password or email`,
       };
@@ -137,4 +87,8 @@ export const onFormActionLogin = async (
       issues: parsed.error.issues.map((issue) => issue.message),
     };
   }
+};
+
+export const logout = async () => {
+  await signOut();
 };

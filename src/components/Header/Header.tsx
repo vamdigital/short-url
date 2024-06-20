@@ -1,7 +1,10 @@
 import { HeaderNav, Logo } from '@/components';
+import { auth } from '../../../auth';
 import Link from 'next/link';
 
-export const Header = () => {
+export const Header = async () => {
+  const session = await auth();
+
   return (
     <header className="flex w-full bg-white py-10">
       <div className="container relative flex w-full lg:items-center max-mobile:flex-col">
@@ -10,7 +13,7 @@ export const Header = () => {
             <Logo />
           </Link>
         </div>
-        <HeaderNav />
+        <HeaderNav session={session} />
       </div>
     </header>
   );

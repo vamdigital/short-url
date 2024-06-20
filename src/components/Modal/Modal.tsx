@@ -11,6 +11,7 @@ export const Modal = ({ children }: Props) => {
   const handleOpenChange = () => {
     router.back();
   };
+
   return (
     <Dialog defaultOpen={true} open={true} onOpenChange={handleOpenChange}>
       <DialogOverlay className="overflow-y-hidden">

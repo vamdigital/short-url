@@ -4,7 +4,9 @@ import Link from 'next/link';
 import { useCallback, useState } from 'react';
 import { Button } from '../ui/button';
 
-export const HeaderNav = () => {
+import { logout } from '@/lib/actions';
+import { Session } from 'next-auth';
+export const HeaderNav = ({ session }: { session: Session | null }) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const navArray = ['Features', 'Pricing', 'Resources', 'Login', 'Signup'];
@@ -42,7 +44,39 @@ export const HeaderNav = () => {
         </div>
         <div className="flex min-w-52 max-mobile:mt-4 max-mobile:w-full max-mobile:border-t-[1px] max-mobile:border-t-l-gray/20 max-mobile:py-4">
           <ul className="flex w-full items-center justify-end gap-4 font-bold text-g-violet max-mobile:flex-col max-mobile:justify-center">
-            {navArray.slice(3, 4).map((nav) => (
+            {session ? (
+              <li>
+                <form
+                  action={logout}
+                  className="flex items-center justify-center"
+                >
+                  <div>
+                    <p className="text-white">{session?.user?.name}</p>
+                    <p className="text-white">{session?.user?.email}</p>
+                  </div>
+                  <Button type="submit" className="w-40" variant="secondary">
+                    logout
+                  </Button>
+                </form>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <Link href="/login" className="hover:text-v-d-blue">
+                    Login
+                  </Link>
+                </li>
+                <li className="items-center justify-center max-mobile:flex max-mobile:w-full">
+                  <Link
+                    href="/signup"
+                    className="rounded-xl bg-cyan px-6 py-3 text-center text-sm font-bold text-white max-mobile:w-full"
+                  >
+                    Sign up
+                  </Link>
+                </li>
+              </>
+            )}
+            {/* navArray.slice(3, 4).map((nav) => (
               <li key={nav}>
                 <Link
                   href={nav === 'Login' ? '/login' : '/'}
@@ -51,15 +85,7 @@ export const HeaderNav = () => {
                   {nav}
                 </Link>
               </li>
-            ))}
-            <li className="items-center justify-center max-mobile:flex max-mobile:w-full">
-              <Link
-                href="/signup"
-                className="rounded-xl bg-cyan px-6 py-3 text-center text-sm font-bold text-white max-mobile:w-full"
-              >
-                Sign up
-              </Link>
-            </li>
+            )) */}
           </ul>
         </div>
       </div>

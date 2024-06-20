@@ -23,11 +23,6 @@ import { signupFormSchema } from '@/lib/formSchema';
 
 type SignupSchema = z.infer<typeof signupFormSchema>;
 type Props = {
-  onDataAction: (data: SignupSchema) => Promise<{
-    message: string;
-    user?: z.infer<typeof signupFormSchema>;
-    issues?: string[];
-  }>;
   onFormAction: (
     prevState: {
       message: string;
@@ -41,7 +36,7 @@ type Props = {
     issues?: string[];
   }>;
 };
-export const SignupForm = ({ onDataAction, onFormAction }: Props) => {
+export const SignupForm = ({ onFormAction }: Props) => {
   const form = useForm<SignupSchema>({
     resolver: zodResolver(signupFormSchema),
     defaultValues: {

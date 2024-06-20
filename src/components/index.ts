@@ -4,3 +4,4 @@ export * from './HeaderNav/HeaderNav';
 export * from './Modal/Modal';
 export * from './LoginForm/LoginForm';
 export * from './NextAuthProvider/NextAuthProvider';
+export * from './SessionData/SessionData';

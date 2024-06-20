@@ -1,25 +1,20 @@
 import { Button } from '@/components/ui/button';
-import { auth, signOut } from '../../auth';
+import { auth } from '../../auth';
+import SessionData from '@/components/SessionData/SessionData';
+import { redirect } from 'next/navigation';
 
 export default async function Home() {
   const session = await auth();
+
   return (
     <section className="flex w-full flex-col items-center justify-between p-24">
-      {session && (
+      {session ? (
         <>
-          <pre>{JSON.stringify(session, null, 2)}</pre>
-          <form
-            action={async () => {
-              'use server';
-              await signOut();
-            }}
-          >
-            <Button type="submit"> Sign Out</Button>
-          </form>
+          <SessionData session={session} />
         </>
+      ) : (
+        <Button>Shorten Url</Button>
       )}
-
-      <Button>Shorten Url</Button>
     </section>
   );
 }
