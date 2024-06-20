@@ -51,10 +51,13 @@ export const HeaderNav = ({ session }: { session: Session | null }) => {
                   className="flex items-center justify-center"
                 >
                   <div>
-                    <p className="text-white">{session?.user?.name}</p>
-                    <p className="text-white">{session?.user?.email}</p>
+                    <p className="text-v-d-blue">Welcome</p>
+                    <p className="text-v-gray">{session?.user?.name}</p>
                   </div>
-                  <Button type="submit" className="w-40" variant="secondary">
+                  <Button
+                    type="submit"
+                    className="rounded-3xl bg-cyan px-6 py-3 text-center text-sm font-bold text-white max-mobile:w-full"
+                  >
                     logout
                   </Button>
                 </form>
@@ -69,7 +72,7 @@ export const HeaderNav = ({ session }: { session: Session | null }) => {
                 <li className="items-center justify-center max-mobile:flex max-mobile:w-full">
                   <Link
                     href="/signup"
-                    className="rounded-xl bg-cyan px-6 py-3 text-center text-sm font-bold text-white max-mobile:w-full"
+                    className="rounded-3xl bg-cyan px-6 py-3 text-center text-sm font-bold text-white max-mobile:w-full"
                   >
                     Sign up
                   </Link>

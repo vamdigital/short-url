@@ -21,14 +21,15 @@ export default async function RootLayout({
   auth: React.ReactNode;
 }>) {
   const session = await sessionAuth();
+  console.log({ session });
   return (
     <html lang="en">
       <body className={poppins.className}>
         <NextAuthProvider session={session}>
           <div className="flex min-h-screen flex-col">
             <Header />
-            <main className="flex-1">
-              <section className="flex w-full bg-white md:min-h-[calc(100vh-178px)]">
+            <main className="flex-1 bg-white">
+              <section className="flex w-full bg-white md:min-h-[calc(100vh-180px)]">
                 {children}
                 {!session && auth}
               </section>
