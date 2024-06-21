@@ -72,5 +72,6 @@
   }
   body {
     @apply bg-gray-200;
+    overflow-x: hidden;
   }
 }

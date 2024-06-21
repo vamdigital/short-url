@@ -1,9 +1,14 @@
-import { Button } from '@/components/ui/button';
+import { auth } from '@/auth';
+import { Hero } from '@/components';
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
+
   return (
-    <main className="flex flex-col items-center justify-between p-24">
-      <Button>Shorten Url</Button>
-    </main>
+    <section className="flex w-full flex-col items-center justify-between">
+      <div className="container">
+        <Hero />
+      </div>
+    </section>
   );
 }
