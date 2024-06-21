@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { loginFormSchema, signupFormSchema } from './formSchema';
 import db from '../../prisma/prisma';
 import { revalidatePath } from 'next/cache';
-import { signOut, signIn } from '../../auth';
+import { signOut, signIn } from '@/auth';
 import { isRedirectError } from 'next/dist/client/components/redirect';
 import { hash } from 'bcryptjs';
 

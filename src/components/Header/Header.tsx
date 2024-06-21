@@ -1,5 +1,5 @@
 import { HeaderNav, Logo } from '@/components';
-import { auth } from '../../../auth';
+import { auth } from '@/auth';
 import Link from 'next/link';
 
 export const Header = async () => {

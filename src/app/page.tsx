@@ -1,6 +1,4 @@
-import { Button } from '@/components/ui/button';
-import { auth } from '../../auth';
-import SessionData from '@/components/SessionData/SessionData';
+import { auth } from '@/auth';
 import { Hero } from '@/components';
 
 export default async function Home() {

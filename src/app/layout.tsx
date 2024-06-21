@@ -3,8 +3,7 @@ import { Poppins } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components';
 import { NextAuthProvider } from '@/components/NextAuthProvider/NextAuthProvider';
-import { auth as sessionAuth } from '../../auth';
-import { headers } from 'next/headers';
+import { auth as sessionAuth } from '@/auth';
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['500', '700'] });
 

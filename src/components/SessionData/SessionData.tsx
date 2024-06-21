@@ -1,6 +1,6 @@
 import type { Session } from 'next-auth';
-import { signOut } from '../../../auth';
-import { Button } from '../ui/button';
+import { signOut } from '@/auth';
+import { Button } from '@/components/ui/button';
 
 export default function SessionData({ session }: { session: Session | null }) {
   if (session?.user) {
@@ -27,6 +27,7 @@ export default function SessionData({ session }: { session: Session | null }) {
           <pre className="whitespace-pre-wrap break-all px-4 py-6">
             {JSON.stringify(session, null, 2)}
           </pre>
+          <Button onClick={async () => await signOut()}>SignOut</Button>
         </div>
       </div>
     );
