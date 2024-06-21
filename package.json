@@ -12,6 +12,7 @@
     "check-types": "tsc --pretty --noEmit",
     "format:fix": "prettier --write --ignore-path .gitignore .",
     "prepare": "husky",
+    "postinstall": "prisma generate",
     "studio": "npx prisma studio"
   },
   "prisma": {
