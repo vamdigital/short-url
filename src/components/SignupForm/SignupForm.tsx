@@ -42,7 +42,8 @@ export const SignupForm = ({ onFormAction }: Props) => {
     defaultValues: {
       email: '',
       password: '',
-      name: '',
+      firstName: '',
+      lastName: '',
       avatarUrl: '',
     },
   });
@@ -69,15 +70,29 @@ export const SignupForm = ({ onFormAction }: Props) => {
         <div className="mb-5 flex flex-col gap-5">
           <FormField
             control={form.control}
-            name="name"
+            name="firstName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>First Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="John Doe" {...field} />
+                  <Input placeholder="John" {...field} />
                 </FormControl>
                 <FormMessage />
-                <FormDescription>Your full name</FormDescription>
+                <FormDescription>Your first name</FormDescription>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="lastName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Last Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="Doe" {...field} />
+                </FormControl>
+                <FormMessage />
+                <FormDescription>Your last name</FormDescription>
               </FormItem>
             )}
           />

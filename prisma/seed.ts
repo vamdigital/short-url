@@ -7,7 +7,8 @@ async function seed() {
     create: {
       email: 'alice@alice.com',
       password: 'alicealice',
-      name: 'alice',
+      firstName: 'alice',
+      lastName: 'malice',
       avatarUrl: '/avatar-alice.png',
       urls: {
         create: {
@@ -23,7 +24,8 @@ async function seed() {
     create: {
       email: 'bob@bob.com',
       password: 'bobbob',
-      name: 'bob',
+      firstName: 'bob',
+      lastName: 'mbob',
       avatarUrl: '/avatar-bob.png',
       urls: {
         create: {

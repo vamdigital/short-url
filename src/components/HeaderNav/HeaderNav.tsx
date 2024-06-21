@@ -7,6 +7,7 @@ import { Button } from '../ui/button';
 import { logout } from '@/lib/actions';
 import { Session } from 'next-auth';
 export const HeaderNav = ({ session }: { session: Session | null }) => {
+  console.log({ session });
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const navArray = ['Features', 'Pricing', 'Resources', 'Login', 'Signup'];
@@ -52,7 +53,7 @@ export const HeaderNav = ({ session }: { session: Session | null }) => {
                 >
                   <div>
                     <p className="text-v-d-blue">Welcome</p>
-                    <p className="text-v-gray">{session?.user?.name}</p>
+                    <p className="text-v-d-blue">{session.user.firstName}</p>
                   </div>
                   <Button
                     type="submit"

@@ -36,7 +36,8 @@ export const onFormActionSignup = async (
       data: {
         email,
         password: hashedPassword,
-        name: parsed.data.name,
+        firstName: parsed.data.firstName,
+        lastName: parsed.data.lastName,
         avatarUrl: parsed.data.avatarUrl,
       },
     });
