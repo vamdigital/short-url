@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { logout } from '@/lib/actions';
 import { Session } from 'next-auth';
 export const HeaderNav = ({ session }: { session: Session | null }) => {
-  console.log({ session });
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const navArray = ['Features', 'Pricing', 'Resources', 'Login', 'Signup'];

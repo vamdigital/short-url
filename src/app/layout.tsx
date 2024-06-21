@@ -19,7 +19,6 @@ export default async function RootLayout({
   auth: React.ReactNode;
 }>) {
   const session = await sessionAuth();
-  console.log({ session });
   return (
     <html lang="en">
       <body className={poppins.className}>
