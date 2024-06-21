@@ -36,13 +36,13 @@ export default {
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     jwt: async ({ token, user }) => {
-      if (user) token.firstName = user.firstName;
+      if (user && user.firstName) token.firstName = user.firstName;
       return token;
     },
 
     async session({ session, token }) {
-      if (session.user) {
-        session.user.firstName = token.firstName as string;
+      if (session.user && token.firstName) {
+        session.user.firstName = token.firstName;
       }
       return session;
     },
