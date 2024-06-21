@@ -1,6 +1,5 @@
-import { Modal } from '@/components';
+import { Modal, SignupForm } from '@/components';
 import Link from 'next/link';
-import { SignupForm } from '@/components/SignupForm/SignupForm';
 import { onFormActionSignup } from '@/lib/actions';
 
 export default function Signup() {

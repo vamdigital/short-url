@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Button } from '../ui/button';
+import { Button } from '@/components/ui/button';
 export const Hero = () => {
   return (
     <div className="relative flex w-full bg-white pb-20 pt-10 lg:pt-20 max-mobile:flex-col">

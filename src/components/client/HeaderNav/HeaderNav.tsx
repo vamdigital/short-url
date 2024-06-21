@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useCallback, useState } from 'react';
-import { Button } from '../ui/button';
+import { Button } from '@/components/ui/button';
 
 import { logout } from '@/lib/actions';
 import { Session } from 'next-auth';

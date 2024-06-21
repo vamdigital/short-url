@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { SignupForm } from '@/components/SignupForm/SignupForm';
+import { SignupForm } from '@/components';
 import { onFormActionSignup } from '@/lib/actions';
 
 export default function Signup() {

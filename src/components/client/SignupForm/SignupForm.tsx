@@ -1,4 +1,3 @@
-/* eslint-disable require-await */
 'use client';
 
 import { useFormState } from 'react-dom';
