@@ -41,7 +41,13 @@ export const onFormActionSignup = async (
         avatarUrl: parsed.data.avatarUrl,
       },
     });
+
     revalidatePath('/signup');
+    await signIn('credentials', {
+      email: parsed.data.email,
+      password: parsed.data.password,
+    });
+
     return {
       message: 'User Registered',
       user: parsed.data,

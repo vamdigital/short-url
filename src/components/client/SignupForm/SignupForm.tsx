@@ -54,7 +54,7 @@ export const SignupForm = ({ onFormAction }: Props) => {
 
   return (
     <Form {...form}>
-      {state.message && <FormMessage>{state.message}</FormMessage>}
+      {state?.message && <FormMessage>{state.message}</FormMessage>}
       <form
         action={formAction}
         ref={formRef}
