@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 
 import { logout } from '@/lib/actions';
 import { Session } from 'next-auth';
+import Image from 'next/image';
 export const HeaderNav = ({ session }: { session: Session | null }) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
@@ -54,7 +55,19 @@ export const HeaderNav = ({ session }: { session: Session | null }) => {
                   className="flex items-center justify-center gap-3"
                 >
                   <div className="flex items-center gap-2">
-                    <div className="flex h-8 w-8 rounded-full bg-gray-200"></div>
+                    <div className="border-v-gray flex h-10 w-10 rounded-full bg-gray-200">
+                      {session.user.avatarUrl ? (
+                        <Image
+                          src={session.user.avatarUrl}
+                          alt="avatar"
+                          width={20}
+                          height={20}
+                          className="h-full w-full rounded-full object-cover"
+                        />
+                      ) : (
+                        ''
+                      )}
+                    </div>
                     <p className="text-sm text-g-violet md:text-v-d-blue">
                       Welcome!
                     </p>
