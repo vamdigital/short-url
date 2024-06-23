@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 
 export default function Login() {
   const pathName = usePathname();
-  const paths = ['/login', '/signup'];
+  const paths = ['/login'];
   if (!paths.includes(pathName)) {
     return null;
   }
