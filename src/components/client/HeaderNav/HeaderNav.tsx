@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useCallback, useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 import { logout } from '@/lib/actions';
 import { Session } from 'next-auth';
@@ -54,7 +55,20 @@ export const HeaderNav = ({ session }: { session: Session | null }) => {
                   className="flex items-center justify-center gap-3"
                 >
                   <div className="flex items-center gap-2">
-                    <div className="flex h-8 w-8 rounded-full bg-gray-200"></div>
+                    {session.user.avatarUrl ? (
+                      <Avatar>
+                        <AvatarImage
+                          src={session.user.avatarUrl}
+                          className="rounded-full border border-cyan object-contain"
+                          alt={`${session.user.firstName} ${session.user.lastName} profile avatar`}
+                        />
+                        <AvatarFallback delayMs={600}>
+                          {session.user.firstName[0]}
+                        </AvatarFallback>
+                      </Avatar>
+                    ) : (
+                      ''
+                    )}
                     <p className="text-sm text-g-violet md:text-v-d-blue">
                       Welcome!
                     </p>

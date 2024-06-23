@@ -1,8 +1,15 @@
+'use client';
 import { Modal, SignupForm } from '@/components';
 import Link from 'next/link';
 import { onFormActionSignup } from '@/lib/actions';
+import { usePathname } from 'next/navigation';
 
 export default function Signup() {
+  const pathName = usePathname();
+  const paths = ['/signup'];
+  if (!paths.includes(pathName)) {
+    return null;
+  }
   return (
     <Modal>
       <div className="container max-w-screen-sm">

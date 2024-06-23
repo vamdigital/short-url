@@ -49,7 +49,7 @@ export default {
       session.user.id = token.id as string;
       session.user.firstName = token.firstName as string;
       session.user.lastName = token.lastName as string;
-      session.user.image = token.avatarUrl as string;
+      session.user.avatarUrl = token.avatarUrl as string;
       return session;
     },
   },
