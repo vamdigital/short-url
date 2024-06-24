@@ -123,6 +123,10 @@ export const onFormActionLogin = async (
   }
 };
 
+export const googleActionLogin = async () => {
+  await signIn('google');
+};
+
 export const logout = async () => {
   await signOut();
 };

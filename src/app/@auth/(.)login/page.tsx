@@ -1,5 +1,5 @@
 'use client';
-import { Modal } from '@/components';
+import { GoogleForm, Modal } from '@/components';
 import { LoginForm } from '@/components/';
 import { onFormActionLogin } from '@/lib/actions';
 import { usePathname } from 'next/navigation';
@@ -16,6 +16,12 @@ export default function Login() {
         <div className="mx-auto flex flex-col py-10">
           <h1 className="my-5 mb-10 text-4xl">Login</h1>
           <LoginForm onFormAction={onFormActionLogin} />
+          <div className="flex">
+            {/** Google Provider */}
+            <div className="flex-col">
+              <GoogleForm />
+            </div>
+          </div>
         </div>
       </div>
     </Modal>

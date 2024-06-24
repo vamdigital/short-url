@@ -7,3 +7,4 @@ export * from './client/SignupForm/SignupForm';
 export * from './client/NextAuthProvider/NextAuthProvider';
 export * from './server/SessionData/SessionData';
 export * from './server/Hero/Hero';
+export * from './server/GoogleForm/GoogleForm';
