@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache';
 import { signOut, signIn } from '@/auth';
 import { isRedirectError } from 'next/dist/client/components/redirect';
 import { hash } from 'bcryptjs';
-import fs from 'node:fs/promises';
+const uploadCloudinaryData = require('../lib/cloudinary').uploadCloudinaryData;
 
 export const onFormActionSignup = async (
   prevState: {
@@ -17,20 +17,30 @@ export const onFormActionSignup = async (
   formData: FormData,
 ) => {
   const data = Object.fromEntries(formData);
-  /** File Upload Service  */
-  const file = data.avatarUrl ? (data.avatarUrl as File) : null;
-  const arrayBuffer = file ? await file.arrayBuffer() : null;
-  const buffer = arrayBuffer ? new Uint8Array(arrayBuffer) : null;
-  if (buffer && file) {
-    await fs.writeFile(`./public/uploads/${file.name}`, buffer);
-  }
+  const avatarData = await uploadCloudinaryData(data);
 
-  const fileUrl = file ? `./public/uploads/${file.name}` : null;
+  const rawUrl = avatarData && avatarData.url.split('/');
+  const avatarUrl = rawUrl[rawUrl.length - 1];
+
+  /** File Upload Service - local  */
+  // const file = data.avatarUrl ? (data.avatarUrl as File) : null;
+  // const arrayBuffer = file ? await file.arrayBuffer() : null;
+  // const buffer = arrayBuffer ? new Uint8Array(arrayBuffer) : null;
+  // if (buffer && file) {
+  //   await fs.writeFile(`./public/uploads/${file.name}`, buffer);
+  // }
+
+  // const fileUrl = file ? `./public/uploads/${file.name}` : null;
+
+  const fileUrl = avatarUrl
+    ? `${process.env.CLOUDINARY_BASE_URL}${avatarUrl}`
+    : null;
 
   /** End of File Upload */
-  const newData = { ...data, avatarUrl: fileUrl?.replace('./public', '') }; // to transform the data for avatarUrl
+  const newData = { ...data, avatarUrl: fileUrl }; // to transform the data for avatarUrl
 
   const parsed = await signupFormSchema.safeParse(newData);
+  // const parsed = await signupFormSchema.safeParse(data);
   if (parsed.success) {
     const exists = await db.user.findFirst({
       where: {
