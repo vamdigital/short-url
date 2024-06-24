@@ -19,7 +19,7 @@ export const onFormActionSignup = async (
   const data = Object.fromEntries(formData);
   const avatarData = await uploadCloudinaryData(data);
 
-  const rawUrl = avatarData && avatarData.url.split('/');
+  const rawUrl = avatarData && avatarData.url && avatarData?.url.split('/');
   const avatarUrl = rawUrl[rawUrl.length - 1];
 
   /** File Upload Service - local  */
