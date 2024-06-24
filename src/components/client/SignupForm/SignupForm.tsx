@@ -1,7 +1,7 @@
 'use client';
 
 import { useFormState } from 'react-dom';
-import { useRef } from 'react';
+import { useRef, useTransition } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -51,17 +51,24 @@ export const SignupForm = ({ onFormAction }: Props) => {
     message: '',
   });
   const formRef = useRef<HTMLFormElement>(null);
-
+  const [isPending, startTransition] = useTransition();
+  console.log({ isPending });
   return (
     <Form {...form}>
       {state?.message && <FormMessage>{state.message}</FormMessage>}
       <form
-        action={formAction}
+        action={() =>
+          startTransition(async () => {
+            await formAction(new FormData(formRef.current!));
+          })
+        }
         ref={formRef}
         onSubmit={(evt) => {
           evt.preventDefault();
           form.handleSubmit(() => {
-            formAction(new FormData(formRef.current!));
+            startTransition(async () => {
+              await formAction(new FormData(formRef.current!));
+            });
           })(evt);
         }}
         className="spacy-y-8 mb-5"
@@ -144,7 +151,9 @@ export const SignupForm = ({ onFormAction }: Props) => {
             )}
           />
         </div>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={isPending}>
+          {isPending ? 'creating...' : 'Signup'}
+        </Button>
       </form>
     </Form>
   );

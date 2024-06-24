@@ -1,7 +1,7 @@
 'use client';
 
 import { useFormState } from 'react-dom';
-import { useRef } from 'react';
+import { useRef, useTransition } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -47,17 +47,25 @@ export const LoginForm = ({ onFormAction }: Props) => {
   const [state, formAction] = useFormState(onFormAction, {
     message: '',
   });
+
+  const [isPending, startTransition] = useTransition();
   const formRef = useRef<HTMLFormElement>(null);
   return (
     <Form {...form}>
       {state?.message && <FormMessage>{state.message}</FormMessage>}
       <form
-        action={formAction}
+        action={() =>
+          startTransition(async () => {
+            await formAction(new FormData(formRef.current!));
+          })
+        }
         ref={formRef}
         onSubmit={(evt) => {
           evt.preventDefault();
           form.handleSubmit(() => {
-            formAction(new FormData(formRef.current!));
+            startTransition(async () => {
+              await formAction(new FormData(formRef.current!));
+            });
           })(evt);
         }}
         className="spacy-y-8 mb-5"
@@ -93,7 +101,9 @@ export const LoginForm = ({ onFormAction }: Props) => {
             )}
           />
         </div>
-        <Button type="submit">Login</Button>
+        <Button type="submit" disabled={isPending}>
+          {isPending ? 'Logging in...' : 'Login'}
+        </Button>
       </form>
     </Form>
   );

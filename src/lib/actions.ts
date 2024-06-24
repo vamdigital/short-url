@@ -41,6 +41,8 @@ export const onFormActionSignup = async (
 
   const parsed = await signupFormSchema.safeParse(newData);
   // const parsed = await signupFormSchema.safeParse(data);
+  // dummy timer
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   if (parsed.success) {
     const exists = await db.user.findFirst({
       where: {
@@ -93,6 +95,8 @@ export const onFormActionLogin = async (
 ) => {
   const data = Object.fromEntries(formData);
   const parsed = await loginFormSchema.safeParse(data);
+  // dummy timer
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   if (parsed.success) {
     try {
       await signIn('credentials', {
