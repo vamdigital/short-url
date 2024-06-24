@@ -13,7 +13,7 @@
     "format:fix": "prettier --write --ignore-path .gitignore .",
     "prepare": "husky",
     "postinstall": "prisma generate",
-    "studio": "npx prisma studio"
+    "studio": "dotenv -e .env.development -- npx prisma studio"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
