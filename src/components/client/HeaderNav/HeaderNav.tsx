@@ -18,6 +18,7 @@ export const HeaderNav = ({ session }: { session: Session | null }) => {
 
   const visibityClass = isVisible ? 'max-mobile:flex-col' : 'max-mobile:hidden';
 
+  const sessionName = session?.user.firstName ?? session?.user.name;
   return (
     <>
       <div className="absolute right-5 flex lg:hidden">
@@ -55,11 +56,11 @@ export const HeaderNav = ({ session }: { session: Session | null }) => {
                   className="flex items-center justify-center gap-3"
                 >
                   <div className="flex items-center gap-2">
-                    {session.user.avatarUrl ? (
+                    {session ? (
                       <Avatar>
                         <AvatarImage
                           src={session.user.avatarUrl}
-                          className="rounded-full border border-cyan object-contain"
+                          className="rounded-full border-2 border-gray-300 object-contain"
                           alt={`${session.user.firstName} ${session.user.lastName} profile avatar`}
                         />
                         <AvatarFallback delayMs={600}>

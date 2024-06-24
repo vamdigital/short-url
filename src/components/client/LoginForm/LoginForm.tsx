@@ -68,7 +68,7 @@ export const LoginForm = ({ onFormAction }: Props) => {
             });
           })(evt);
         }}
-        className="spacy-y-8 mb-5"
+        className="spacy-y-8 mb-2"
       >
         <div className="mb-5 flex flex-col gap-5">
           <FormField
