@@ -1,5 +1,6 @@
-import { GoogleForm, LoginForm } from '@/components';
-import { onFormActionLogin } from '@/lib/actions';
+import { OAuthLoginForm, LoginForm } from '@/components';
+import { onFormActionLogin, oAuthActionLogin } from '@/lib/actions';
+import Image from 'next/image';
 
 export default function Login() {
   return (
@@ -11,7 +12,19 @@ export default function Login() {
           <div className="flex">
             {/** Google Provider */}
             <div className="flex-col">
-              <GoogleForm />
+              <OAuthLoginForm
+                formAction={async () => {
+                  'use server';
+                  await oAuthActionLogin({ provider: 'google' });
+                }}
+              >
+                <Image
+                  src="/google-icon.svg"
+                  width={20}
+                  height={20}
+                  alt="Google Login Logo"
+                />
+              </OAuthLoginForm>
             </div>
           </div>
         </div>

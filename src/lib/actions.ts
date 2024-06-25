@@ -123,8 +123,8 @@ export const onFormActionLogin = async (
   }
 };
 
-export const googleActionLogin = async () => {
-  await signIn('google');
+export const oAuthActionLogin = async ({ provider }: { provider: string }) => {
+  await signIn(provider);
 };
 
 export const logout = async () => {

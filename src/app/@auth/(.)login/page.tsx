@@ -1,7 +1,8 @@
 'use client';
-import { GoogleForm, Modal } from '@/components';
+import Image from 'next/image';
+import { OAuthLoginForm, Modal } from '@/components';
 import { LoginForm } from '@/components/';
-import { onFormActionLogin } from '@/lib/actions';
+import { oAuthActionLogin, onFormActionLogin } from '@/lib/actions';
 import { usePathname } from 'next/navigation';
 
 export default function Login() {
@@ -19,7 +20,16 @@ export default function Login() {
           <div className="flex">
             {/** Google Provider */}
             <div className="flex-col">
-              <GoogleForm />
+              <OAuthLoginForm
+                formAction={() => oAuthActionLogin({ provider: 'google' })}
+              >
+                <Image
+                  src="/google-icon.svg"
+                  width={20}
+                  height={20}
+                  alt="Google Login Logo"
+                />
+              </OAuthLoginForm>
             </div>
           </div>
         </div>
