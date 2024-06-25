@@ -4,6 +4,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import db from './prisma/prisma';
 import { compareSync } from 'bcryptjs';
+import { signupFormSchema } from '@/lib/formSchema';
 
 export default {
   providers: [
@@ -24,7 +25,10 @@ export default {
         if (!user) {
           throw new Error('User not found');
         } else {
-          const isMatch = await compareSync(password as string, user.password);
+          const isMatch = await compareSync(
+            password as string,
+            user.password as string,
+          );
           if (!isMatch) {
             throw new Error('Incorrect password');
           } else {
@@ -48,9 +52,6 @@ export default {
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     jwt: async ({ token, user }) => {
-      let tokenName = token.firstName ?? token.name;
-      let tokenAvatarUrl = token.avatarUrl ?? token.picture;
-      console.log({ tokenName, tokenAvatarUrl });
       if (user) {
         token.firstName = user.firstName;
         token.name = user.name;
@@ -63,11 +64,40 @@ export default {
     },
 
     async session({ session, token }) {
+      let firstName = token.name ? token.name.split(' ')[0] : null;
+      let lastName = token.name ? token.name.split(' ')[1] : null;
       session.user.id = token.id as string;
-      session.user.firstName = token.firstName ?? (token.name as string);
-      session.user.lastName = token.lastName as string;
+      session.user.firstName = token.firstName ?? (firstName as string);
+      session.user.lastName = token.lastName ?? (lastName as string);
       session.user.avatarUrl = token.avatarUrl ?? (token.picture as string);
       return session;
+    },
+
+    // Google
+    async signIn({ account, user }) {
+      // o auth providers like google
+      const exists = await db.user.findFirst({
+        where: {
+          email: user.email as string,
+        },
+      });
+      if (exists) {
+        return true;
+      }
+      if (user) {
+        const firstName = user.name && user.name.split(' ')[0];
+        const lastName = user.name && user.name.split(' ')[1];
+        await db.user.create({
+          data: {
+            googleId: account?.providerAccountId,
+            email: user.email as string,
+            firstName: firstName as string,
+            lastName: lastName as string,
+            avatarUrl: user.image,
+          },
+        });
+      }
+      return true;
     },
   },
   session: {
