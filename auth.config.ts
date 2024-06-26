@@ -2,9 +2,9 @@
 import type { NextAuthConfig } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
+import GithubProvider from 'next-auth/providers/github';
 import db from './prisma/prisma';
 import { compareSync } from 'bcryptjs';
-import { signupFormSchema } from '@/lib/formSchema';
 
 export default {
   providers: [
@@ -47,6 +47,10 @@ export default {
           response_type: 'code',
         },
       },
+    }),
+    GithubProvider({
+      clientId: process.env.AUTH_GITHUB_ID as string,
+      clientSecret: process.env.AUTH_GITHUB_SECRET as string,
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,

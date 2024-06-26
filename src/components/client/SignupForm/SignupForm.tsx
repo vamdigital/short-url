@@ -52,7 +52,6 @@ export const SignupForm = ({ onFormAction }: Props) => {
   });
   const formRef = useRef<HTMLFormElement>(null);
   const [isPending, startTransition] = useTransition();
-  console.log({ isPending });
   return (
     <Form {...form}>
       {state?.message && <FormMessage>{state.message}</FormMessage>}

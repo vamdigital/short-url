@@ -8,6 +8,5 @@ type Props = {
 };
 export const FormSubmitButton = ({ buttonText, loadingText }: Props) => {
   const { pending } = useFormStatus();
-  console.log({ pending });
   return <Button type="submit">{pending ? loadingText : buttonText}</Button>;
 };
