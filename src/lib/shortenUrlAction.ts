@@ -38,8 +38,8 @@ export const shortenUrl = async (
   _prevState: {
     message?: string;
     url?: z.infer<typeof urlFormSchema>;
-    success: boolean
-    resetKey: string
+    success: boolean;
+    resetKey: string;
     issues?: string[];
   },
   formData: FormData,
@@ -89,6 +89,6 @@ export const shortenUrl = async (
   return {
     success: true,
     message: `successfully shortened ${result.data.url}`,
-    resetKey: Date.now().toString()
-  }
+    resetKey: Date.now().toString(),
+  };
 };
