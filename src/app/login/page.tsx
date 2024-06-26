@@ -11,20 +11,38 @@ export default function Login() {
           <LoginForm onFormAction={onFormActionLogin} />
           <div className="flex">
             {/** Google Provider */}
-            <div className="flex-col">
-              <OAuthLoginForm
-                formAction={async () => {
-                  'use server';
-                  await oAuthActionLogin({ provider: 'google' });
-                }}
-              >
-                <Image
-                  src="/google-icon.svg"
-                  width={20}
-                  height={20}
-                  alt="Google Login Logo"
-                />
-              </OAuthLoginForm>
+            <div className="flex gap-2">
+              <div className="flex-col">
+                <OAuthLoginForm
+                  formAction={async () => {
+                    'use server';
+                    await oAuthActionLogin({ provider: 'google' });
+                  }}
+                >
+                  <Image
+                    src="/google-icon.svg"
+                    width={20}
+                    height={20}
+                    alt="Google Login Logo"
+                  />
+                </OAuthLoginForm>
+              </div>
+
+              <div className="flex-col">
+                <OAuthLoginForm
+                  formAction={async () => {
+                    'use server';
+                    await oAuthActionLogin({ provider: 'github' });
+                  }}
+                >
+                  <Image
+                    src="/github-icon.svg"
+                    width={20}
+                    height={20}
+                    alt="Github Login Logo"
+                  />
+                </OAuthLoginForm>
+              </div>
             </div>
           </div>
         </div>

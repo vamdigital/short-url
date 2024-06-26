@@ -26,3 +26,11 @@ export const loginFormSchema = z.object({
     .min(8, { message: 'Password must be at least 8 characters' })
     .max(32, { message: 'Password must be less than 32 characters' }),
 });
+
+export const urlFormSchema = z.object({
+  url: z
+    .string()
+    .trim()
+    .min(1, { message: 'Url is required' })
+    .url({ message: 'Invalid url' }),
+});

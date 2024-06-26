@@ -18,7 +18,6 @@ export const HeaderNav = ({ session }: { session: Session | null }) => {
 
   const visibityClass = isVisible ? 'max-mobile:flex-col' : 'max-mobile:hidden';
 
-  console.log({ session });
   return (
     <>
       <div className="absolute right-5 flex lg:hidden">
