@@ -9,7 +9,7 @@ export const SubmitButton = () => {
     <Button
       type="submit"
       disabled={isPending}
-      className={`h-11 flex-col rounded-lg ${pendingClassName}`}
+      className={`h-11 rounded-lg max-mobile:flex max-mobile:w-full ${pendingClassName}`}
     >
       {isPending ? 'Shortening' : 'Shorten it!'}
     </Button>

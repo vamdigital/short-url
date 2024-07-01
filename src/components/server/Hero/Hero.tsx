@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 export const Hero = () => {
   return (
-    <div className="relative flex w-full bg-white pb-20 pt-10 lg:pt-20 max-mobile:flex-col">
+    <div className="relative flex w-full bg-white pb-12 pt-10 lg:pb-20 lg:pt-20 max-mobile:flex-col">
       <div className="flex items-center max-mobile:flex-col">
         <div className="mt-5 flex flex-col lg:mt-20 lg:w-[80%] max-mobile:order-2 max-mobile:px-3">
           <div className="lg:max-w-[500px]">

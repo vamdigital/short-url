@@ -26,8 +26,8 @@ export default async function RootLayout({
         <NextAuthProvider session={session}>
           <div className="flex min-h-screen flex-col">
             <Header />
-            <main className="flex-1 bg-white">
-              <section className="flex w-full bg-white md:min-h-[calc(100vh-180px)]">
+            <main className="flex-1">
+              <section className="flex w-full md:min-h-[calc(100vh-180px)]">
                 {children}
                 {!session && auth}
               </section>
