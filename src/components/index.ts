@@ -6,6 +6,8 @@ export * from './client/LoginForm/LoginForm';
 export * from './client/SignupForm/SignupForm';
 export * from './client/NextAuthProvider/NextAuthProvider';
 export * from './client/UrlForm/UrlForm';
+export * from './client/UrlForm/UrlForm';
+export * from './client/UrlListItem/UrlListItem';
 export * from './server/SessionData/SessionData';
 export * from './server/Hero/Hero';
 export * from './server/OAuthLoginForm/OAuthLoginForm';

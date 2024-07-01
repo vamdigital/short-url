@@ -40,14 +40,14 @@ export const UrlForm = () => {
       : 'border-gray-300';
 
   return (
-    <div className="flex-col items-center justify-between md:w-full">
+    <div className="flex w-full flex-col items-center justify-between md:w-full">
       <form
         key={state.resetKey}
         ref={formRef}
         action={formAction}
-        className="flex items-center justify-between md:w-full"
+        className="flex w-full items-center justify-between"
       >
-        <div className="h-11 w-full flex-col items-center justify-center">
+        <div className="w-full items-center justify-between md:flex-col">
           <label htmlFor="url" className="sr-only">
             Enter Url
           </label>
@@ -57,7 +57,7 @@ export const UrlForm = () => {
             onFocus={() => clearErrors()}
             id="url"
             placeholder="Shorten a link here..."
-            className={`mr-3 min-h-11 border ${borderColorClass} px-3 py-2 md:w-[80%] md:px-5 lg:w-[85%]`}
+            className={`min-h-11 border md:mr-3 max-mobile:mb-4 max-mobile:w-full max-mobile:flex-col ${borderColorClass} px-3 py-2 md:w-[70%] md:px-5 lg:w-[89%]`}
           />
           <SubmitButton />
         </div>
