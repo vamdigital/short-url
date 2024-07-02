@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google';
 import './globals.css';
 import { Header, NextAuthProvider } from '@/components';
 import { auth as sessionAuth } from '@/auth';
+import { Toaster } from 'react-hot-toast';
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['500', '700'] });
 
@@ -37,6 +38,7 @@ export default async function RootLayout({
             </footer>
           </div>
         </NextAuthProvider>
+        <Toaster />
       </body>
     </html>
   );

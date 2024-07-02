@@ -33,7 +33,7 @@ export const HeaderNav = ({ session }: { session: Session | null }) => {
         className={`lg:flex max-mobile:mt-5 max-mobile:rounded-lg max-mobile:bg-d-violet max-mobile:p-5 max-mobile:text-white ${visibityClass} w-full justify-between gap-5`}
       >
         <div className="flex w-full">
-          <ul className="flex w-full items-center gap-5 font-bold text-g-violet max-mobile:flex-col max-mobile:justify-center">
+          <ul className="flex w-full items-center gap-5 font-bold text-g-violet max-mobile:flex-col max-mobile:justify-center max-mobile:px-2">
             {navArray.slice(0, 3).map((nav) => (
               <li key={nav}>
                 <Link href="/" className="hover:text-v-d-blue">
