@@ -32,5 +32,5 @@ export const urlFormSchema = z.object({
     .string()
     .trim()
     .min(1, { message: 'Url is required' })
-    .url({ message: 'Invalid url' }),
+    .url({ message: 'Invalid url should be http(s)://www.example.com' }),
 });

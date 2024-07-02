@@ -1,6 +1,7 @@
 'use client';
 import { useCallback, useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { toast } from 'react-hot-toast';
 
 type Props = {
   originalUrl: string;
@@ -11,13 +12,13 @@ export const UrlListItem = ({ shortenedUrl, originalUrl }: Props) => {
   const copyToClipBoardHandler = useCallback(() => {
     navigator.clipboard.writeText(shortenedUrl).then(() => {
       setCopyText(true);
-      console.log({ shortenedUrl });
+      toast.success('copied to clipboard');
     });
   }, [shortenedUrl]);
 
   const buttonColorCn = copyBtnText ? 'bg-d-violet' : 'bg-cyan';
   return (
-    <div className="my-3 flex w-full">
+    <div className="my-2 flex w-full">
       <div className="container mx-auto items-center justify-between rounded-md bg-white p-3 md:flex max-mobile:flex-col">
         <div className="flex md:flex-col max-mobile:border-b-2 max-mobile:border-gray-200 max-mobile:py-3">
           <p className="text-gray-600">{originalUrl}</p>

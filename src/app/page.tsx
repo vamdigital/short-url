@@ -1,5 +1,11 @@
 import { auth } from '@/auth';
-import { Hero, ShortUrlFormWrapper, UrlForm, UrlListItem } from '@/components';
+import {
+  Hero,
+  SectionBlock,
+  ShortUrlFormWrapper,
+  UrlForm,
+  UrlListItem,
+} from '@/components';
 import Link from 'next/link';
 import db from '../../prisma/prisma';
 
@@ -26,16 +32,16 @@ export default async function Home() {
         </div>
       </div>
       <ShortUrlFormWrapper className="relative top-[-10px] lg:top-[-50px]">
-        {session ? (
+        {session && session.user.firstName ? (
           <div className="container max-mobile:p-0">
-            <UrlForm />
+            <UrlForm firstName={session.user.firstName} />
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center text-white">
             <p className="my-4">To get Started please login</p>
             <Link
               href={'/login'}
-              className="flex rounded-3xl bg-cyan px-8 py-3 text-center text-sm font-bold text-white max-mobile:w-full"
+              className="flex justify-center rounded-3xl bg-cyan px-8 py-3 text-center text-sm font-bold text-white max-mobile:w-full"
             >
               Login
             </Link>
@@ -52,6 +58,11 @@ export default async function Home() {
             />
           ))}
       </div>
+      <SectionBlock
+        className="mt-28"
+        title="Advanced Statistics"
+        subTitle="Track how your links are performing across the web with our advanced statistics dashboard."
+      />
     </section>
   );
 }
