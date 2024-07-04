@@ -1,10 +1,14 @@
+import { Text } from '@/components';
+
 export type CardDetailsProps = {
   cardDetails: string;
 };
 export const CardDetails = ({ cardDetails }: CardDetailsProps) => {
   return (
     <div>
-      <h1>{cardDetails}</h1>
+      <Text as="p" className="text-gray-400">
+        {cardDetails}
+      </Text>
     </div>
   );
 };

@@ -48,7 +48,7 @@ export const Card: FC<CardProps> & CardComposition = ({
   });
   return (
     <div
-      className={`relative my-4 flex w-80 flex-col items-center justify-center rounded-md bg-white px-7 py-12 pt-20 md:my-8 ${className}`}
+      className={`relative my-4 flex w-80 flex-col rounded-md bg-white px-7 py-12 pt-20 md:my-8 ${className}`}
     >
       {childrenWithProps}
     </div>

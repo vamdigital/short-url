@@ -111,7 +111,7 @@ export default async function Home() {
         ))}
       </div>
 
-      <ShortUrlFormWrapper className="mb-36">
+      <ShortUrlFormWrapper className="top-[-40px] mb-[0px]">
         <div className="flex flex-col items-center justify-center text-white">
           <p className="my-4">Boost your links today</p>
           <Link
