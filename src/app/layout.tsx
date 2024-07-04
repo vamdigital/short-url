@@ -34,7 +34,7 @@ export default async function RootLayout({
               </section>
             </main>
             <footer className="flex w-full justify-center bg-v-d-blue p-5 text-center text-white">
-              <h3>Footer Content</h3>
+              <h3>&copy; {new Date().getFullYear()} Shorten-url</h3>
             </footer>
           </div>
         </NextAuthProvider>

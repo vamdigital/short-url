@@ -21,6 +21,8 @@ export const UrlForm = ({ firstName }: { firstName: string | undefined }) => {
     resetKey: Date.now().toString(),
   });
 
+  console.log({ state });
+
   const {
     register,
     formState: { errors },
@@ -45,7 +47,8 @@ export const UrlForm = ({ firstName }: { firstName: string | undefined }) => {
     if (state.success) {
       formRef?.current?.reset();
       toast.success(state.message, { id: 'urlFormSuccess' });
-    } else if (!state.success && state.data) {
+    } else if (!state.success) {
+      console.log('should come here');
       toast.error(state.message);
     }
   }, [setFocus, state.data, state.message, state.success]);
@@ -69,7 +72,7 @@ export const UrlForm = ({ firstName }: { firstName: string | undefined }) => {
             Enter Url
           </label>
           <input
-            type="string"
+            type="url"
             {...register('url')}
             onFocus={() => clearErrors()}
             id="url"
