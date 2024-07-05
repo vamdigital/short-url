@@ -76,7 +76,7 @@ export const UrlForm = ({ firstName }: { firstName: string | undefined }) => {
             {...register('url')}
             onFocus={() => clearErrors()}
             id="url"
-            placeholder="Shorten a link here..."
+            placeholder="https://www.example.com"
             className={`min-h-11 border md:mr-3 max-mobile:mb-4 max-mobile:w-full max-mobile:flex-col ${borderColorClass} px-3 py-2 md:w-[70%] md:px-5 lg:w-[86%]`}
           />
           <SubmitButton />

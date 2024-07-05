@@ -38,6 +38,7 @@ type Props = {
 export const LoginForm = ({ onFormAction }: Props) => {
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginFormSchema),
+    mode: 'onBlur',
     defaultValues: {
       email: '',
       password: '',
@@ -78,7 +79,11 @@ export const LoginForm = ({ onFormAction }: Props) => {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input type="email" {...field} />
+                  <Input
+                    type="email"
+                    {...field}
+                    placeholder="hello@world.com"
+                  />
                 </FormControl>
                 <FormMessage />
                 <FormDescription>Enter your email</FormDescription>
@@ -101,8 +106,13 @@ export const LoginForm = ({ onFormAction }: Props) => {
             )}
           />
         </div>
-        <Button type="submit" disabled={isPending}>
-          {isPending ? 'Logging in...' : 'Login'}
+        <Button
+          type="submit"
+          disabled={isPending && state.message.trim().length === 0}
+        >
+          {isPending && state.message.trim().length === 0
+            ? 'Logging in...'
+            : 'Login'}
         </Button>
       </form>
     </Form>
