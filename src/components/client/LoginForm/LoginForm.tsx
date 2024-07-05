@@ -38,7 +38,6 @@ type Props = {
 export const LoginForm = ({ onFormAction }: Props) => {
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginFormSchema),
-    mode: 'onBlur',
     defaultValues: {
       email: '',
       password: '',
